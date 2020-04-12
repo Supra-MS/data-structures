@@ -1,8 +1,23 @@
 var Stack = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
+  // To create a prototypal chain
+  var someInstance = Object.create(stackMethods);
+  someInstance.storage = {};
+  return someInstance;
 };
 
-var stackMethods = {};
+var stackMethods = {
+  push: function(value) {
+    this.storage[this.size()] = value;
+  },
+  pop: function() {
+    var poppedItem = this.storage[this.size() - 1];
+    delete this.storage[this.size() - 1];
+    return poppedItem;
+  },
+  size: function() {
+    var size = Object.keys(this.storage).length;
+    return size;
+  }
+};
 
 
